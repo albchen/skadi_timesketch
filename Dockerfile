@@ -28,8 +28,8 @@ RUN apt-get -y install software-properties-common
 RUN add-apt-repository ppa:gift/stable && apt-get update
 RUN apt-get update && apt-get -y install python-plaso=20190131-1ppa1~bionic plaso-tools=20190131-1ppa1~bionic nodejs yarn
 
-# Build and Install Timesketch from GitHub Master with Pip
-RUN git clone https://github.com/google/timesketch.git /tmp/timesketch
+# Build and Install Timesketch from GitHub (LDO-CERT, mans_to_es Branch) with Pip
+RUN git clone -b mans_to_es https://github.com/LDO-CERT/timesketch.git /tmp/timesketch
 RUN cd /tmp/timesketch && git checkout tags/20191220 && yarn install && yarn run build
 # Remove pyyaml from requirements.txt to avoid conflits with python-yaml ubuntu package
 RUN sed -i -e '/pyyaml/d' /tmp/timesketch/requirements.txt
