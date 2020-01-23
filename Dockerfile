@@ -30,7 +30,7 @@ RUN apt-get update && apt-get -y install python-plaso=20190131-1ppa1~bionic plas
 
 # Build and Install Timesketch from GitHub Master with Pip
 RUN git clone https://github.com/google/timesketch.git /tmp/timesketch
-RUN cd /tmp/timesketch && git checkout tags/20190207 && yarn install && yarn run build
+RUN cd /tmp/timesketch && git checkout tags/20191220 && yarn install && yarn run build
 # Remove pyyaml from requirements.txt to avoid conflits with python-yaml ubuntu package
 RUN sed -i -e '/pyyaml/d' /tmp/timesketch/requirements.txt
 RUN pip install /tmp/timesketch/
