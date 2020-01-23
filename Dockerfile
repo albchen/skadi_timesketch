@@ -35,6 +35,13 @@ RUN cd /tmp/timesketch && git checkout tags/20191220 && yarn install && yarn run
 RUN sed -i -e '/pyyaml/d' /tmp/timesketch/requirements.txt
 RUN pip install /tmp/timesketch/
 
+# Download and Copy mans_to_es.py to /usr/local/bin
+RUN git clone https://github.com/albchen/mans_to_es.git /tmp/mans_to_es
+RUN cp /tmp/mans_to_es/mans_to_es/mans_to_es.py /usr/local/bin/mans_to_es.py
+
+# Install packages for mans_to_es.py
+RUN pip install /tmp/mans_to_es/
+
 # Copy the Timesketch configuration file into /etc
 RUN cp /usr/local/share/timesketch/timesketch.conf /etc
 
