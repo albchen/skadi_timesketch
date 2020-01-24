@@ -27,7 +27,7 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.lis
 # Install Plaso
 RUN apt-get -y install software-properties-common
 RUN add-apt-repository ppa:gift/stable && apt-get update
-RUN apt-get update && apt-get -y install python-plaso=20190131-1ppa1~bionic plaso-tools=20190131-1ppa1~bionic nodejs yarn
+RUN apt-get update && apt-get -y install python-plaso plaso-tools nodejs yarn
 
 # Build and Install Timesketch from GitHub (LDO-CERT, mans_to_es Branch) with Pip
 RUN git clone -b mans_to_es https://github.com/LDO-CERT/timesketch.git /tmp/timesketch
