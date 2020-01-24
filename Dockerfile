@@ -30,8 +30,8 @@ RUN add-apt-repository ppa:gift/stable && apt-get update
 RUN apt-get update && apt-get -y install python-plaso plaso-tools nodejs yarn
 
 # Build and Install Timesketch from GitHub (LDO-CERT, mans_to_es Branch) with Pip
-RUN git clone -b mans_to_es https://github.com/LDO-CERT/timesketch.git /tmp/timesketch
-RUN cd /tmp/timesketch && git checkout tags/20191220 && yarn install && yarn run build
+RUN git clone https://github.com/LDO-CERT/timesketch.git /tmp/timesketch
+RUN cd /tmp/timesketch && git checkout mans_to_es && yarn install && yarn run build
 # Remove pyyaml from requirements.txt to avoid conflits with python-yaml ubuntu package
 RUN sed -i -e '/pyyaml/d' /tmp/timesketch/requirements.txt
 RUN pip install /tmp/timesketch/
