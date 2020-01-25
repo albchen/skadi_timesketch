@@ -6,13 +6,20 @@ RUN apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
 
 # Setup install environment and Timesketch dependencies
 RUN apt-get -y install apt-transport-https\
+                       build-essential\
                        curl\
                        git\
+                       gpg-agent\
                        libffi-dev\
                        lsb-release\
-                       python-dev\
+                       locales\
+                       python-setuptools\
+                       python3-dev\
+                       python3-setuptools\
+                       python3\
                        python3-pip\
-                       python-psycopg2\
+                       python3-psycopg2\
+                       python3-wheel\
                        uwsgi\
                        uwsgi-plugin-python3
 
