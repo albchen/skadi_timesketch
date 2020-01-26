@@ -6,7 +6,7 @@ RUN apt-get update && \
   apt-get -y install uwsgi uwsgi-plugin-python3
 
 # Download and Copy mans_to_es.py to /usr/local/bin
-RUN git clone https://github.com/albchen/mans_to_es.git /tmp/mans_to_es
+RUN git clone -b dev https://github.com/albchen/mans_to_es.git /tmp/mans_to_es
 RUN cp /tmp/mans_to_es/mans_to_es/mans_to_es.py /usr/local/bin/mans_to_es.py
 RUN chmod 755 /usr/local/bin/mans_to_es.py
 
