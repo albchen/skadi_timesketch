@@ -9,12 +9,9 @@ RUN apt-get update && \
 # Download MANS-related files from albchen / LDO-CERT
 RUN curl -sL -o /usr/local/bin/mans_to_es.py https://raw.githubusercontent.com/albchen/mans_to_es/master/mans_to_es/mans_to_es.py
 RUN chmod 755 /usr/local/bin/mans_to_es.py
-RUN curl -sL -o /usr/local/lib/python3.6/dist-packages/timesketch/lib/forms.py https://raw.githubusercontent.com/LDO-CERT/timesketch/master/timesketch/lib/forms.py
-RUN curl -sL -o /usr/local/lib/python3.6/dist-packages/timesketch/lib/tasks.py https://raw.githubusercontent.com/LDO-CERT/timesketch/master/timesketch/lib/tasks.py
-RUN curl -sL -o /usr/local/lib/python3.6/dist-packages/timesketch/templates/sketch/timelines.html https://raw.githubusercontent.com/LDO-CERT/timesketch/master/timesketch/templates/sketch/timelines.html
 
 # Install packages for mans_to_es.py not already previously installed for timesketch
-RUN pip3 install certifi lxml ciso8601
+RUN pip3 install lxml ciso8601
 
 # Cleanup apt cache
 RUN apt-get -y autoremove --purge && \
