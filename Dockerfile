@@ -12,9 +12,9 @@ RUN curl -sL -o /usr/local/bin/mans_to_es.py https://raw.githubusercontent.com/a
     chmod 755 /usr/local/bin/mans_to_es.py && \
     pip3 install lxml ciso8601
 
-RUN curl -sL -o /usr/local/lib/python3.6/dist-packages/timesketch/lib/forms.py https://raw.githubusercontent.com/albchen/Skadi/test/Docker/timesketch/forms.py && \
-    curl -sL -o /usr/local/lib/python3.6/dist-packages/timesketch/lib/tasks.py https://raw.githubusercontent.com/albchen/Skadi/test/Docker/timesketch/tasks.py && \
-    curl -sL -o /usr/local/lib/python3.6/dist-packages/timesketch/templates/sketch/timelines.html https://raw.githubusercontent.com/LDO-CERT/timesketch/mans_to_es/timesketch/templates/sketch/timelines.html
+COPY timesketch/forms.py /usr/local/lib/python3.6/dist-packages/timesketch/lib/forms.py
+COPY timesketch/tasks.py /usr/local/lib/python3.6/dist-packages/timesketch/lib/tasks.py
+COPY timesketch/timelines.html /usr/local/lib/python3.6/dist-packages/timesketch/templates/sketch/timelines.html
 
 # Cleanup apt cache
 RUN apt-get -y autoremove --purge && \
