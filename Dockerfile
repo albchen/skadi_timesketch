@@ -68,9 +68,12 @@ RUN curl -sL -o /usr/local/bin/mans_to_es.py https://raw.githubusercontent.com/a
     chmod 755 /usr/local/bin/mans_to_es.py && \
     pip3 install lxml ciso8601
 
-COPY timesketch/forms.py /usr/local/lib/python3.6/dist-packages/timesketch/lib/forms.py
+# Add MANS usage to timesketch files
+RUN sed -i "s/'plaso',/'plaso', 'mans',/g" /usr/local/lib/python3.6/dist-packages/timesketch/lib/forms.py && \
+    sed -i "s/: .plaso,/: .plaso, .mans,/g" /usr/local/lib/python3.6/dist-packages/timesketch/lib/forms.py && \
+    sed -i 's/file, JSONL,/file, MANS, JSONL,/g' /usr/local/lib/python3.6/dist-packages/timesketch/templates/sketch/timelines.html
+
 COPY timesketch/tasks.py /usr/local/lib/python3.6/dist-packages/timesketch/lib/tasks.py
-COPY timesketch/timelines.html /usr/local/lib/python3.6/dist-packages/timesketch/templates/sketch/timelines.html
 
 # Copy the TimeSketch uWSGI configuration file into the container
 COPY uwsgi_config.ini /
