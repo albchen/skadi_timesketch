@@ -1,4 +1,4 @@
-# Use the official Docker Hub aorlikoski/CDQR image
+# Use the Docker Hub albchen/CDQR image
 FROM albchen/cdqr:dev
 
 # Install uwsgi
