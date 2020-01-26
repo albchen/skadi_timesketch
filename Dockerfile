@@ -1,6 +1,5 @@
-# Use the official Docker Hub aorlikoski/CDQR image
-FROM aorlikoski/cdqr:20191226
-MAINTAINER aorlikoski
+# Use the official Docker Hub albchen/CDQR image
+FROM albchen/cdqr_mans:dev
 
 # Install uwsgi
 RUN apt-get update && \
