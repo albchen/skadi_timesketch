@@ -27,9 +27,7 @@ RUN apt-get -qq -y update && \
       python3-psycopg2 \
       python3-wheel \
       uwsgi \
-      uwsgi-plugin-python3 \
-      lxml \
-      ciso8601 && \
+      uwsgi-plugin-python3 && \
     curl -sS https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
     VERSION=node_8.x && \
     DISTRO="$(lsb_release -s -c)" && \
@@ -65,9 +63,10 @@ RUN git clone https://github.com/google/timesketch.git /tmp/timesketch && \
     pip3 install /tmp/timesketch/ && \
     rm -rf /tmp/*
 
-# Download / Copy MANS-related files
+# Download / Copy MANS-related files and install additional dependencies
 RUN curl -sL -o /usr/local/bin/mans_to_es.py https://raw.githubusercontent.com/albchen/mans_to_es/master/mans_to_es/mans_to_es.py && \
-    chmod 755 /usr/local/bin/mans_to_es.py
+    chmod 755 /usr/local/bin/mans_to_es.py && \
+    pip3 install lxml ciso8601
 
 COPY timesketch/forms.py /usr/local/lib/python3.6/dist-packages/timesketch/lib/forms.py
 COPY timesketch/tasks.py /usr/local/lib/python3.6/dist-packages/timesketch/lib/tasks.py
