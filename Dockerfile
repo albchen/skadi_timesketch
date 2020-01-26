@@ -1,5 +1,7 @@
-# Use the official Docker Hub albchen/CDQR image
-FROM albchen/cdqr_mans:dev
+# Use the official Docker Hub aorlikoski/CDQR image
+FROM aorlikoski/cdqr:20191226
+MAINTAINER aorlikoski
+
 
 # Install uwsgi
 RUN apt-get update && \
@@ -8,6 +10,10 @@ RUN apt-get update && \
 # Download MANS-related files from albchen / LDO-CERT
 RUN curl -sL -o /usr/local/bin/mans_to_es.py https://raw.githubusercontent.com/albchen/mans_to_es/master/mans_to_es/mans_to_es.py
 RUN chmod 755 /usr/local/bin/mans_to_es.py
+
+RUN curl -sL -o /usr/local/lib/python3.6/dist-packages/timesketch/lib/forms.py https://raw.githubusercontent.com/LDO-CERT/timesketch/mans_to_es/timesketch/lib/forms.py && \
+    curl -sL -o /usr/local/lib/python3.6/dist-packages/timesketch/lib/tasks.py https://raw.githubusercontent.com/LDO-CERT/timesketch/mans_to_es/timesketch/lib/tasks.py && \
+    curl -sL -o /usr/local/lib/python3.6/dist-packages/timesketch/templates/sketch/timelines.html https://raw.githubusercontent.com/LDO-CERT/timesketch/mans_to_es/timesketch/templates/sketch/timelines.html
 
 # Install packages for mans_to_es.py not already previously installed for timesketch
 RUN pip3 install lxml ciso8601
