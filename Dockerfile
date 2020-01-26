@@ -1,5 +1,5 @@
 # Use the Docker Hub albchen/CDQR image
-FROM albchen/cdqr:dev
+FROM albchen/cdqr_mans:dev
 
 # Install uwsgi
 RUN apt-get update && \
