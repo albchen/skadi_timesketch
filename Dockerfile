@@ -55,8 +55,12 @@ RUN curl -sL -o /tmp/plaso-20190916.tar.gz https://github.com/log2timeline/plaso
     python3 setup.py install && \
     rm -rf /tmp/*
 
-# Build and Install latest Timesketch from GitHub Master with Pip
+# Build and Install Timesketch from GitHub Master with Pip
 RUN git clone https://github.com/google/timesketch.git /tmp/timesketch && \
+    cd /tmp/timesketch && \
+    git checkout aded1b19acca44b99854083088ef920390f75457 && \
+    cd /tmp/timesketch && ls && yarn install && \
+    yarn run build  && \
     sed -i -e '/pyyaml/d' /tmp/timesketch/requirements.txt && \
     pip3 install /tmp/timesketch/ && \
     rm -rf /tmp/*
